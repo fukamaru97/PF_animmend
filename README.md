@@ -1,24 +1,46 @@
-# README
+このサイトについて
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+# サイト名
+animmend (アニメンド)
 
-* Ruby version
 
-* System dependencies
+## サイト概要
 
-* Configuration
 
-* Database creation
+### サイトテーマ
+見たいアニメを検索したり、作品についての情報や評価を閲覧できるレビューサイト
 
-* Database initialization
+### テーマを選んだ理由
+私はもともとアニメが好きで、コロナ禍をきっかけに以前よりも自宅でアニメを見る機会が増えました。
+最近ではテレビのほか、NetflixやU-NEXTなどのサブスクリプションサービスの普及によりアニメがより身近なものとなりました。
 
-* How to run the test suite
+世の中にはたくさんのアニメ情報サイトが存在していますが、必要でない情報など盛り込まれていることがよく見受けられます。
+シンプルな作りかつ使いやすさも重視したサイトを制作したいと思い、今回のテーマを選びました。
 
-* Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
+### ターゲットユーザ
+アニメ鑑賞を趣味としている人
+アニメを見始めようとしている人
+アニメ作品の情報が気になる人
+鑑賞したアニメ作品について評価したい人
 
-* ...
+
+### 主な利用シーン
+見たいアニメを探している時
+作品についての世間的な評価が知りたい時
+アニメについての評価をつけたい時
+
+## 設計書
+<...>
+
+## 開発環境
+- OS：Linux(CentOS)
+- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- フレームワーク：Ruby on Rails
+- JSライブラリ：jQuery
+- IDE：Cloud9
+
+## 使用素材
+- 外部サービスの画像素材・音声素材を使用した場合は、必ずサービス名とURLを明記してください。
+- 使用しない場合は、使用素材の項目をREADMEから削除してください。
