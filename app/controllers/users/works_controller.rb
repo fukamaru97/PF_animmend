@@ -1,5 +1,6 @@
 class Users::WorksController < ApplicationController
   def index
+    @works = Work.all
   end
 
   def show

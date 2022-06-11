@@ -10,6 +10,7 @@ class Admins::WorksController < ApplicationController
   end
 
   def index
+    @works = Work.all
   end
 
   def show
