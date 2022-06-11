@@ -28,6 +28,12 @@ class Admins::WorksController < ApplicationController
     redirect_to admins_work_path(work.id)
   end
 
+  def destroy
+    work = Work.find(params[:id])
+    work.destroy
+    redirect_to admins_works_path
+  end
+
   private
 
   def work_params

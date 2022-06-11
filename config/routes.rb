@@ -12,11 +12,11 @@ Rails.application.routes.draw do
   root to: "homes#top"
 
   namespace :admins do
-   resources :works, only: [:new, :create, :index, :show, :edit, :update]
+   resources :works, only: [:new, :create, :index, :show, :edit, :update, :destroy]
   end
 
   namespace :users do
-    resources :works, only: [:index, :show]
+    resources :works, only: [:index, :show, :destroy]
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
