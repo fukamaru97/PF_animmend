@@ -1,0 +1,7 @@
+ <h1>ジャンル登録</h1>
+ 
+ <%= form_with model: @genre, url: admins_genres_path, method: :post do |f| %>
+  <h4>ジャンル名</h4>
+   <%= f.text_field :name %>
+   <%= f.submit '登録する' %>
+<% end %>

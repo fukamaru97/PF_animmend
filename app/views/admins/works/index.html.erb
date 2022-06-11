@@ -2,5 +2,6 @@
 <div>
   <%= image_tag work.get_image, size: "200x200" %>
   <p>作品名：<%= link_to work.name, admins_work_path(work.id) %></p>
+
 </div>
 <% end %>

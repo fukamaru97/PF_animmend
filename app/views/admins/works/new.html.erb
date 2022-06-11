@@ -15,6 +15,8 @@
   <h4>作品名</h4>
    <%= f.text_field :name %>
   <h4>ストーリー</h4>
-   <%= f.text_area :story %>
+   <%= f.text_area :story %><br/>
+  <h4>ジャンル <%= f.collection_select :genre_id, Genre.all, :id, :name %></h4>
+
   <%= f.submit '登録する' %>
 <% end %>

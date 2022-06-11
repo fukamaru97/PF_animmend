@@ -15,6 +15,7 @@ class Admins::WorksController < ApplicationController
 
   def index #作品一覧
     @works = Work.all
+    @genres = Genre.all
   end
 
   def show #作品詳細
@@ -40,7 +41,7 @@ class Admins::WorksController < ApplicationController
   private
 
   def work_params
-    params.require(:work).permit(:name, :image, :story)
+    params.require(:work).permit(:name, :image, :story, :genre_id)
   end
 
 end
