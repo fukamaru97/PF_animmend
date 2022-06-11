@@ -1,4 +1,14 @@
 <h1>作品登録</h1>
+
+ <% if @work.errors.any? %>
+   <%= @work.errors.count %>件のエラーが発生しました
+   <ul>
+     <% @work.errors.full_messages.each do |message| %>
+       <li><%= message %></li>
+     <% end %>
+   </ul>
+ <% end %>
+
  <%= form_with model: @work, url: admins_works_path, method: :post do |f| %>
   <h4>作品画像</h4>
    <%= f.file_field :image, accept: "image/*" %>

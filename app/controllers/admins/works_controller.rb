@@ -6,8 +6,11 @@ class Admins::WorksController < ApplicationController
 
   def create
     @work = Work.new(work_params)
-    @work.save
-    redirect_to admins_works_path
+    if @work.save
+     redirect_to admins_works_path
+    else
+     render :new
+    end
   end
 
   def index
