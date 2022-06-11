@@ -1,4 +1,5 @@
 class Admins::WorksController < ApplicationController
+
   def new
     @work = Work.new
   end
@@ -18,6 +19,13 @@ class Admins::WorksController < ApplicationController
   end
 
   def edit
+    @work = Work.find(params[:id])
+  end
+
+  def update
+    work = Work.find(params[:id])
+    work.update(work_params)
+    redirect_to admins_work_path(work.id)
   end
 
   private

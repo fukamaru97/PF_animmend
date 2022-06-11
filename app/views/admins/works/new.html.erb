@@ -1,5 +1,5 @@
 <h1>作品登録</h1>
- <%= form_with model: @work, url: admins_works_path do |f| %>
+ <%= form_with model: @work, url: admins_works_path, method: :post do |f| %>
   <h4>作品画像</h4>
    <%= f.file_field :image, accept: "image/*" %>
   <h4>作品名</h4>
