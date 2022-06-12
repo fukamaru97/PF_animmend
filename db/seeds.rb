@@ -5,8 +5,15 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+  Tag.create([
+  { name: '恋愛' },
+  { name: '冒険' },
+  { name: '異世界'},
+  { name: '青春'},
+  { name: 'コメディ'},
+  ])
 
-Admin.create!(
+  Admin.create!(
   email: 'admin@admin.com',
   password: 'animmend',
   )

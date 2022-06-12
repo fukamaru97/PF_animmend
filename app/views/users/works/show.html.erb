@@ -3,3 +3,7 @@
 
 <h2>あらすじ</h2>
 <p><%= @work.story %></p>
+
+<% @work.tags.each do |tag| %>
+ <%= tag.name %>
+<% end %>

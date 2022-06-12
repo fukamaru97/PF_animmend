@@ -4,5 +4,9 @@
 <h2>あらすじ</h2>
 <p><%= @work.story %></p>
 
+<% @work.tags.each do |tag| %>
+ <%= tag.name %>
+<% end %>
+
 <%= link_to "編集", edit_admins_work_path(@work.id) %>
 <%= link_to "削除", admins_work_path(@work.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>

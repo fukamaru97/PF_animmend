@@ -2,7 +2,6 @@ class Admins::WorksController < ApplicationController
 
   def new #作品登録
     @work = Work.new
-    @genres = Genre.all
   end
 
   def create #作品情報保存
@@ -10,17 +9,18 @@ class Admins::WorksController < ApplicationController
     if @work.save
      redirect_to admins_works_path
     else
-     @genres = Genre.all
      render :new
     end
   end
 
   def index #作品一覧
-    @works = Work.all
+    @works = params[:tag_id].present? ? Tag.find(params[:tag_id]).works : Work.all
+    #タグの指定があれば該当の作品を表示、指定がないときは全ての作品を表示
   end
 
   def show #作品詳細
     @work = Work.find(params[:id])
+    @work_tags = @work.tags
   end
 
   def edit #作品情報編集
@@ -42,7 +42,7 @@ class Admins::WorksController < ApplicationController
   private
 
   def work_params
-    params.require(:work).permit(:name, :image, :story, :genre_id)
+    params.require(:work).permit(:name, :image, :story, tag_ids: [])
   end
 
 end
