@@ -14,11 +14,20 @@
     <header>
       <% if user_signed_in? %>
       <li>
+        <%= link_to "アニメ一覧", users_works_path %>
+      </li>
+      <li>
+        <%= link_to "マイページ", users_user_path(current_user.id) %>
+      </li>
+      <li>
         <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
       </li>
       <% elsif admin_signed_in? %>
       <li>
         <%= link_to "作品登録", new_admins_work_path %>
+      </li>
+      <li>
+        <%= link_to "アニメ一覧", admins_works_path %>
       </li>
       <li>
         <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
