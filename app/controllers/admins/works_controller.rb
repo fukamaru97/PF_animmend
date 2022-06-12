@@ -2,6 +2,7 @@ class Admins::WorksController < ApplicationController
 
   def new #作品登録
     @work = Work.new
+    @genres = Genre.all
   end
 
   def create #作品情報保存
@@ -9,13 +10,13 @@ class Admins::WorksController < ApplicationController
     if @work.save
      redirect_to admins_works_path
     else
+     @genres = Genre.all
      render :new
     end
   end
 
   def index #作品一覧
     @works = Work.all
-    @genres = Genre.all
   end
 
   def show #作品詳細

@@ -1,6 +1,6 @@
 class Work < ApplicationRecord
   has_one_attached :image
-  has_many :genres, dependent: :destroy
+  belongs_to :genre
 
   validates :name, presence: true
   validates :story, presence: true
