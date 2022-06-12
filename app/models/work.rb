@@ -11,7 +11,7 @@ class Work < ApplicationRecord
     if image.attached?
       image
     else
-      'no_image.jpg'
+      'no_image.jpeg'
     end
   end
 
