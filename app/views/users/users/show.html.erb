@@ -6,6 +6,13 @@
   <% end %>
 </div>
 
+<h2>ウォッチリスト</h2>
+  <% @watchlists.each do |watchlist| %>
+    <%= link_to users_work_path(watchlist.work) do %>
+      <%= watchlist.work.name %>
+    <% end %>
+  <% end %>
+
 <h2>コメントした作品</h2>
   <% @post_comments.each do |work|%><br/>
   <%= link_to work.name, users_work_path(work.id) %>

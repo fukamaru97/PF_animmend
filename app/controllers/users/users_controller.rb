@@ -2,8 +2,9 @@ class Users::UsersController < ApplicationController
 
   def show #ユーザー詳細
     @user = User.find(params[:id])
-    post_comments = PostComment.where(user_id: current_user.id).pluck(:work_id)
+    post_comments = PostComment.where(user_id: @user).pluck(:work_id)
     @post_comments = Work.find(post_comments)
+    @watchlists = Watchlist.where(user_id: @user)
   end
 
   def edit

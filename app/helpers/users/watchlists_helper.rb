@@ -1,0 +1,2 @@
+module Users::WatchlistsHelper
+end

@@ -19,7 +19,8 @@ Rails.application.routes.draw do
 
   namespace :users do
     resources :works, only: [:index, :show] do
-      resources :post_comments, only: [:create]
+      resources :post_comments, only: [:create, :destroy]
+      resource :watchlists, only: [:create, :destroy]
     end
     resources :users, only: [:show, :edit, :update]
   end
