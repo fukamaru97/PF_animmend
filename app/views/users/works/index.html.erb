@@ -8,4 +8,5 @@
   <% work.tags.each do |tag| %>
   <%= tag.name %>
   <% end %>
+  <%= link_to "#{work.post_comments.count} 件のコメント", users_work_path(work.id) %>
 <% end %>

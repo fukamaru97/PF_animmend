@@ -12,11 +12,15 @@ Rails.application.routes.draw do
   root to: "homes#top"
 
   namespace :admins do
-   resources :works, only: [:new, :create, :index, :show, :edit, :update, :destroy]
+    resources :works, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
+      resources :post_comments, only: [:destroy]
+    end
   end
 
   namespace :users do
-    resources :works, only: [:index, :show, :destroy]
+    resources :works, only: [:index, :show] do
+      resources :post_comments, only: [:create]
+    end
     resources :users, only: [:show, :edit, :update]
   end
 
