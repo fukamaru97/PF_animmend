@@ -1,8 +1,10 @@
 class Work < ApplicationRecord
   has_one_attached :image
+
   has_many :work_tags, dependent: :destroy
   has_many :tags, through: :work_tags
-  has_many :post_comments, dependent: :destroy
+
+  has_many :post_comments, dependent: :destroy # work.post_commentsで投稿のコメント取得
 
   validates :name, presence: true
   validates :story, presence: true
