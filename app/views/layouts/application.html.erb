@@ -13,7 +13,7 @@
 
   <body class="d-flex flex-column vh-100">
     <header class="shadow-sm">
-      <nav class="navbar navbar-expand-lg navbar-light">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light ">
         <div class="container">
           <a class="navbar-brand p-0" href="/"><%= image_tag('header_logo', size: '80x100')%></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
@@ -24,30 +24,30 @@
             <ul class="navbar-nav ml-auto">
       <% if user_signed_in? %>
       <li class="nav-item">
-        <%= link_to "アニメ一覧", users_works_path, class: 'nav-link text-dark' %>
+        <%= link_to "アニメ一覧", users_works_path, class: "btn btn-info" %>
       </li>
       <li class="nav-item">
-        <%= link_to "マイページ", users_user_path(current_user.id), class: 'nav-link text-dark' %>
+        <%= link_to "マイページ", users_user_path(current_user.id), class: "ml-2 btn btn-info" %>
       </li>
       <li class="nav-item">
-        <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-dark' %>
+        <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: " ml-2 btn btn-info" %>
       </li>
       <% elsif admin_signed_in? %>
       <li class="nav-item">
-        <%= link_to "作品登録", new_admins_work_path, class: 'nav-link text-dark' %>
+        <%= link_to "作品登録", new_admins_work_path, class: "btn btn-info" %>
       </li>
       <li class="nav-item">
-        <%= link_to "アニメ一覧", admins_works_path, class: 'nav-link text-dark' %>
+        <%= link_to "アニメ一覧", admins_works_path, class: "ml-2 btn btn-info" %>
       </li>
       <li class="nav-item">
-        <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link text-dark' %>
+        <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "ml-2 btn btn-info" %>
       </li>
       <% else %>
       <li class="nav-item">
-        <%= link_to "新規登録", new_user_registration_path, class: 'nav-link text-dark' %>
+        <%= link_to "新規登録", new_user_registration_path, class: "btn btn-info" %>
       </li>
       <li class="nav-item">
-        <%= link_to "ログイン", new_user_session_path, class: 'nav-link text-dark' %>
+        <%= link_to "ログイン", new_user_session_path, class: "ml-2 btn btn-info" %>
       </li>
       <% end %>
      </ul>
@@ -55,23 +55,25 @@
         </div>
       </nav>
     </header>
-    <main class="mb-auto">
+
+    <main class="bg-light">
     <%= yield %>
     </main>
-    <footer class="bg-dark text-white pt-5 pb-4">
+
+    <footer class="bg-light text-secondary pt-2 pb-1 fixed-bottom">
       <div class="container">
         <div class="row no-gutters">
           <div class="col-md-4">
             <p>animmend</p>
           </div>
           <div class="col-md-8">
-            <h6 class="text-white mt-2 mb-3">Link</h6>
+            <h6 class="text-secondary mt-2 mb-3">Link</h6>
             <ul class="p-0 list-unstyled">
               <li>
-                <a href="" title="About" class="text-white-50">サイト概要</a>
+                <a href="" title="About" class="text-secondary-50">サイト概要</a>
               </li>
               <li>
-                <a href="" title="License informations" class="text-white-50">プライバシーポリシー</a>
+                <a href="" title="License informations" class="text-secondary-50">プライバシーポリシー</a>
               </li>
             </ul>
           </div>
