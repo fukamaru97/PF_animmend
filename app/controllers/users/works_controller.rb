@@ -9,7 +9,7 @@ class Users::WorksController < ApplicationController
     @work = Work.find(params[:id])
     @work_tags = @work.tags
     @post_comment = PostComment.new
-    @user = User.find(params[:id])
+
   end
 
 end
