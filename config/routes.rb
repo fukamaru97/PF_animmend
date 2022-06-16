@@ -21,6 +21,9 @@ Rails.application.routes.draw do
     resources :works, only: [:index, :show] do
       resources :post_comments, only: [:create, :destroy]
       resource :watchlists, only: [:create, :destroy]
+      collection do
+        get 'search'
+      end
     end
     resources :users, only: [:show, :edit, :update]
   end

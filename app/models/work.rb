@@ -38,4 +38,8 @@ class Work < ApplicationRecord
     end
   end
 
+  def self.search(keyword)
+    where(["name like?", "%#{keyword}%"])
+  end
+
 end

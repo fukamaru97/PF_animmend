@@ -1,5 +1,15 @@
+<% if user_signed_in? %>
+  <div class="search_form">
+    <%= form_with url: search_users_works_path, local: true, method: :get do |f| %>
+      <%= f.text_field :keyword, value: @keyword, placeholder: "タイトル名で検索" %>
+      <%= f.submit "検索", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+<% end %>
+
 <%= form_tag users_works_path, method: :get, class: 'boards__searchForm' do %>
- <%= select_tag :tag_id, options_from_collection_for_select(Tag.all, :id, :name, params[:tag_id]), { prompt: 'タグで絞り込み検索', onchange: 'submit(this.form);' } %>
+  <%= select_tag :tag_id, options_from_collection_for_select(Tag.all, :id, :name, params[:tag_id]),
+  { prompt: 'ジャンルで絞り込み', onchange: 'submit(this.form);' } %>
 <% end %>
 
 <% @works.each do |work| %>
@@ -10,5 +20,3 @@
   <% end %>
   <%= link_to "#{work.post_comments.count} 件のコメント", users_work_path(work.id) %>
 <% end %>
-
-

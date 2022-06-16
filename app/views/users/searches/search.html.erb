@@ -1,0 +1,11 @@
+<h2>Results index</h2>
+
+<table class="table table-hover table-inverse">
+    <tbody>
+      <% @works.each do |work| %>
+        <tr>
+          <td><%= work.title %></td>
+        </tr>
+      <% end %>
+    </tbody>
+</table>

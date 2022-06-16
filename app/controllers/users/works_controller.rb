@@ -5,11 +5,16 @@ class Users::WorksController < ApplicationController
     #タグの指定があれば該当の作品を表示、指定がないときは全ての作品を表示
   end
 
+  def search
+    @works = Work.search(params[:keyword])
+    @keyword = params[:keyword]
+    render "index"
+  end
+
   def show
     @work = Work.find(params[:id])
     @work_tags = @work.tags
     @post_comment = PostComment.new
-
   end
 
 end
