@@ -22,40 +22,48 @@
     <% @work.post_comments.each do |post_comment| %>
       <p><%= image_tag post_comment.user.get_profile_image(30,30) %></p>
       <%= link_to "#{post_comment.user.name}", users_user_path(post_comment.user) %>
-      <p>評価 :<%= post_comment.rate %>点</p>
-      <div id="rate-rate<%= post_comment.id%>"></div>
-      <script>
-    　　　$('#rate-rate<= post_comment.id %>').raty({
-        size      : 36,
-        starOff   : '<%= asset_path('star-off.png') %>',
-        starOn    : '<%= asset_path('star-on.png') %>',
-        readOnly: true,
-        score: <%= post_comment.rate %>,
-     　  });
-        </script>
       <%= post_comment.created_at.strftime('%Y/%m/%d') %><%= post_comment.comment %>
+      <p>評価 :<%= post_comment.rate %>点</p>
+
+      <div id="star-rate-<%= post_comment.id%>"></div>
+      <script>
+          $('#star-rate-<%= post_comment.id %>').raty({
+            size: 36,
+            starOff:  '<%= asset_path('star-off.png') %>',
+            starOn : '<%= asset_path('star-on.png') %>',
+            starHalf: '<%= asset_path('star-half.png') %>',
+            half: true,
+            readOnly: true,
+            score: <%= post_comment.rate %>,
+          });
+          </script>
+
       <% if post_comment.user == current_user %>
         <%= link_to "削除", users_work_post_comment_path(post_comment.work, post_comment), method: :delete %>
       <% end %>
     <% end %>
+
 </div>
 
 <div>
     <%= form_with model: [@work, @post_comment], url: users_work_post_comments_path(@work) do |f| %>
     　<%= f.text_area :comment, rows: '5', placeholder: "コメントを入力" %>
       <div id="rate">
-        <%= label :rate,'評価' %>
+        <%= f.label :rate,'評価' %>
         <%= f.hidden_field :rate, id: :review_rate %>
       </div>
+
+      <script>
+        $('#rate').raty({
+         size     : 36,
+         starOff:  '<%= asset_path('star-off.png') %>',
+         starOn : '<%= asset_path('star-on.png') %>',
+         starHalf: '<%= asset_path('star-half.png') %>',
+         scoreName: 'post_comment[rate]',
+         half: true,
+         });
+      </script>
+
       <%= f.submit "投稿する" %>
     <% end %>
 </div>
-
-<script>
-  $('#rate').raty({
-    size     : 36,
-    starOff:  '<%= asset_path('star-off.png') %>',
-    starOn : '<%= asset_path('star-on.png') %>',
-    scoreName: 'post_comment[rate]',
-  });
-</script>
