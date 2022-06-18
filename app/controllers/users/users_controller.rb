@@ -1,6 +1,7 @@
 class Users::UsersController < ApplicationController
 
-  def show #ユーザー詳細
+  #ユーザー詳細
+  def show
     @user = User.find(params[:id])
     @following_users = @user.following_user
     @follower_users = @user.follower_user
@@ -9,20 +10,24 @@ class Users::UsersController < ApplicationController
     @post_comments = Work.find(post_comments)
   end
 
-  def follows # フォロー一覧
+  #フォロー一覧
+  def follows
     user = User.find(params[:id])
     @users = user.following_user.reverse_order
   end
 
-  def followers  #フォロワー一覧
+  #フォロワー一覧
+  def followers
     user = User.find(params[:id])
     @users = user.follower_user.reverse_order
   end
 
+  #ユーザー情報編集
   def edit
     @user = User.find(params[:id])
   end
 
+  #ユーザー情報更新
   def update
     @user = User.find(params[:id])
     @user.update(user_params)

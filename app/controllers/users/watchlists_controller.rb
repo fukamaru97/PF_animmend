@@ -1,5 +1,6 @@
 class Users::WatchlistsController < ApplicationController
 
+  #ウォッチリストに入れる
   def create
     @work = Work.find(params[:work_id])
     watchlist = @work.watchlists.new(user_id: current_user.id)
@@ -10,6 +11,7 @@ class Users::WatchlistsController < ApplicationController
     end
   end
 
+  #ウォッチリストから外す
   def destroy
     @work = Work.find(params[:work_id])
     watchlist = @work.watchlists.find_by(user_id: current_user.id)
