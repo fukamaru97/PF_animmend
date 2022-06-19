@@ -10,21 +10,21 @@ class Admins::WorksController < ApplicationController
   def create
     @work = Work.new(work_params)
     if @work.save
-   　   redirect_to admins_works_path
+      redirect_to admins_works_path
     else
-   　　  render :new
+      render :new
     end
   end
 
   #作品一覧
   def index
     #タグの指定があれば該当の作品を表示、指定がないときは全ての作品を表示
-    @works = params[:tag_id].present? ? Tag.find(params[:tag_id]).works : Work.all
+    @works = params[:tag_id].present? ? Tag.find(params[:tag_id]).works.page(params[:page]) : Work.page(params[:page]).per(12)
   end
 
   #作品検索
   def search
-    @works = Work.search(params[:keyword])
+    @works = Work.search(params[:keyword]).page(params[:page]).per(12)
     @keyword = params[:keyword]
     render "index"
   end

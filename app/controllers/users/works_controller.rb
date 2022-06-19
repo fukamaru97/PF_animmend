@@ -1,13 +1,15 @@
 class Users::WorksController < ApplicationController
   before_action :authenticate_user!
 
-  def index #作品一覧
-    @works = params[:tag_id].present? ? Tag.find(params[:tag_id]).works : Work.all
+  #作品一覧
+  def index
+    @works = params[:tag_id].present? ? Tag.find(params[:tag_id]).works.page(params[:page]) : Work.page(params[:page]).per(12)
     #タグの指定があれば該当の作品を表示、指定がないときは全ての作品を表示
   end
 
-  def search #作品検索
-    @works = Work.search(params[:keyword])
+  #作品検索
+  def search
+    @works = Work.search(params[:keyword]).page(params[:page]).per(12)
     @keyword = params[:keyword]
     render "index"
   end

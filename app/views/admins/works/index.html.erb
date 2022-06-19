@@ -1,31 +1,40 @@
 <div class="container">
-  <div class="search_form">
+  <div class="search_form mt-3">
       <%= form_with url: search_admins_works_path, local: true, method: :get do |f| %>
         <%= f.text_field :keyword, value: @keyword, placeholder: "タイトルで検索" %>
-        <%= f.submit "検索", class: "btn btn-primary" %>
+        <%= f.submit "検索", class: "btn btn-info" %>
       <% end %>
   </div>
 
   <%= form_tag admins_works_path, method: :get, class: 'boards__searchForm' do %>
     <%= select_tag :tag_id, options_from_collection_for_select(Tag.all, :id, :name, params[:tag_id]),
-    { prompt: 'シーズンで絞り込み', onchange: 'submit(this.form);' } %>
+    { prompt: '全ての作品', onchange: 'submit(this.form);' } %>
   <% end %>
 
-    <div class="card-deck" style="width: 25rem;">
+    <div class="card-deck">
       <% @works.each do |work| %>
-        <div class="card">
-          <%= image_tag work.get_image, size: "250", class:"card-img-top";%>
-          <div class="card-body">
-            <p class="card-title">
-               <%= link_to work.name, users_work_path(work.id) %>
-            </p>
-            <% work.tags.each do |tag| %>
-            <%= tag.name %>
+        <div class="col-md-3 my-5">
+          <div class="card">
+            <%= link_to admins_work_path(work.id) do %>
+              <p><%= image_tag work.get_image, :height => '250', class:"card-img-top";%></P>
             <% end %>
-            <%= link_to "#{work.post_comments.count} コメント", users_work_path(work.id) %>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-10">
+                  <p class="card-title">
+                    <%= link_to work.name, admins_work_path(work.id), class:"text-dark" %>
+                  </p>
+                  <% work.tags.each do |tag| %>
+                    <p><%= tag.name %></p>
+                  <% end %>
+                  <p><%= link_to "#{work.post_comments.count} コメント", admins_work_path(work.id), class:"text-dark" %></p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       <% end %>
     </div>
 
+  <%= paginate @works %>
 </div>
