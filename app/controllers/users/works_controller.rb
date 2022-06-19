@@ -13,6 +13,7 @@ class Users::WorksController < ApplicationController
   end
 
   def show #作品詳細
+    @works = Work.all
     @work = Work.find(params[:id])
     @work_tags = @work.tags
     @post_comment = PostComment.new

@@ -1,8 +1,11 @@
+<%= image_tag @work.get_image, size: "200x200" %>
 <h2>作品名</h2>
 <p><%= @work.name %></p>
 
-<h2>あらすじ</h2>
+<h2>ストーリー</h2>
 <p><%= @work.story %></p>
+
+<p><%= link_to "公式サイト", @work.website, class: "btn btn-info" %></p>
 
 <% @work.tags.each do |tag| %>
  <%= tag.name %>

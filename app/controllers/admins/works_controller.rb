@@ -58,7 +58,7 @@ class Admins::WorksController < ApplicationController
   private
 
   def work_params
-    params.require(:work).permit(:name, :image, :story, tag_ids: [])
+    params.require(:work).permit(:name, :image, :story, :website, tag_ids: [])
   end
 
 end

@@ -1,22 +1,40 @@
-<% if user_signed_in? %>
-  <div class="search_form">
-    <%= form_with url: search_users_works_path, local: true, method: :get do |f| %>
-      <%= f.text_field :keyword, value: @keyword, placeholder: "タイトル名で検索" %>
-      <%= f.submit "検索", class: "btn btn-primary" %>
+<div class="container">
+
+  <div class="row">
+    <% if user_signed_in? %>
+      <div class="search_form">
+        <%= form_with url: search_users_works_path, local: true, method: :get do |f| %>
+          <%= f.text_field :keyword, value: @keyword, placeholder: "タイトルで検索" %>
+          <%= f.submit "検索", class: "btn btn-primary" %>
+        <% end %>
+      </div>
     <% end %>
   </div>
-<% end %>
 
-<%= form_tag users_works_path, method: :get, class: 'boards__searchForm' do %>
-  <%= select_tag :tag_id, options_from_collection_for_select(Tag.all, :id, :name, params[:tag_id]),
-  { prompt: 'ジャンルで絞り込み', onchange: 'submit(this.form);' } %>
-<% end %>
+  <div class="row">
+    <div class="tag_form">
+      <%= form_tag users_works_path, method: :get, class: 'boards__searchForm' do %>
+        <%= select_tag :tag_id, options_from_collection_for_select(Tag.all, :id, :name, params[:tag_id]),
+        { prompt: 'シーズンで絞り込み', onchange: 'submit(this.form);' } %>
+      <% end %>
+    </div>
+  </div>
 
-<% @works.each do |work| %>
-  <%= image_tag work.get_image, size: "200x200" %>
-  <%= link_to work.name, users_work_path(work.id) %>
-  <% work.tags.each do |tag| %>
-  <%= tag.name %>
-  <% end %>
-  <%= link_to "#{work.post_comments.count} 件のコメント", users_work_path(work.id) %>
-<% end %>
+  <div class="card-deck" style="width: 25rem;">
+    <% @works.each do |work| %>
+      <div class="card">
+        <%= image_tag work.get_image, size: "250", class:"card-img-top";%>
+        <div class="card-body">
+          <p class="card-title">
+             <%= link_to work.name, users_work_path(work.id) %>
+          </p>
+          <% work.tags.each do |tag| %>
+          <%= tag.name %>
+          <% end %>
+          <%= link_to "#{work.post_comments.count} コメント", users_work_path(work.id) %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+</div>
