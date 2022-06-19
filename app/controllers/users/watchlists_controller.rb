@@ -1,4 +1,5 @@
 class Users::WatchlistsController < ApplicationController
+  before_action :authenticate_user!
 
   #ウォッチリストに入れる
   def create

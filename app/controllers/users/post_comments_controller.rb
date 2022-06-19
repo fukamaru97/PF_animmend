@@ -1,4 +1,5 @@
 class Users::PostCommentsController < ApplicationController
+  before_action :authenticate_user!
 
   #コメント投稿
   def create

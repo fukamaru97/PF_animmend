@@ -1,4 +1,5 @@
 class Users::WorksController < ApplicationController
+  before_action :authenticate_user!
 
   def index #作品一覧
     @works = params[:tag_id].present? ? Tag.find(params[:tag_id]).works : Work.all

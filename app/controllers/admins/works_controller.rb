@@ -1,4 +1,5 @@
 class Admins::WorksController < ApplicationController
+  before_action :authenticate_admin!
 
   #作品登録
   def new

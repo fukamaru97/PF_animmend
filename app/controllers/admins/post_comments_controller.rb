@@ -1,4 +1,5 @@
 class Admins::PostCommentsController < ApplicationController
+  before_action :authenticate_admin!
 
   #コメント削除
   def destroy
