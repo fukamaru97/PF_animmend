@@ -1,12 +1,13 @@
-<h1>作品登録</h1>
+<div class="container">
 
- <% if @work.errors.any? %>
-   <%= @work.errors.count %>件のエラーが発生しました
-   <ul>
+  <h1>作品登録</h1>
+   <% if @work.errors.any? %>
+    <%= @work.errors.count %>件のエラーが発生しました
+    <ul>
      <% @work.errors.full_messages.each do |message| %>
-       <li><%= message %></li>
+      <li><%= message %></li>
      <% end %>
-   </ul>
+    </ul>
  <% end %>
 
  <%= form_with model: @work, url: admins_works_path, method: :post do |f| %>
@@ -32,3 +33,5 @@
 
   <%= f.submit '登録する' %>
 <% end %>
+
+</div>
