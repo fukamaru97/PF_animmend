@@ -13,6 +13,13 @@
  *= require_tree .
  *= require_self
  */
+ .navbar-brand {
+   img{
+     width: 80px;
+     height: 100px;
+   }
+ }
+
 .pagination>li>a {
   border: none;
   color: #48d1cc;
