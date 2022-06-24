@@ -5,9 +5,33 @@
       </a>
       <div class="mx-auto">
         <h3 class="title font-weight-bold d-flex justify-content-center text-secondary">animmend</h3>
-        <p class="d-flex justify-content-center">-アニメでつながるレビューサイト-</p>
+        <p class="d-flex justify-content-center">-アニメで繋がるレビューサイト-</p>
         <%= link_to 'ゲストログイン', users_guest_sign_in_path, class: "btn btn-secondary btn-sm btn-block mb-3 sign_in", method: :post %>
         <%= link_to 'ユーザー登録', new_user_registration_path, class: "btn btn-info btn-sm btn-block mb-3" %>
       </div>
     </div>
+
+    <div class="row mt-5">
+      <div class="col-4">
+        <h5 class="font-weight-bold d-flex justify-content-center text-secondary">f i n d</h5>
+        <p class="d-flex justify-content-center mt-4">
+          見たい作品をタイトルで検索する<br>放送時期で絞り込むことができる
+        </p>
+      </div>
+
+      <div class="col-4">
+        <h5 class="font-weight-bold d-flex justify-content-center text-secondary">r e v i e w</h5>
+        <p class="d-flex justify-content-center mt-4">
+          観た作品をコメントや星をつけて評価する<br>観たい作品をウォッチリストに追加できる
+        </p>
+      </div>
+
+      <div class="col-4">
+        <h5 class="font-weight-bold d-flex justify-content-center text-secondary">f o l l o w</h5>
+        <p class="d-flex justify-content-center mt-4">
+          気になったユーザーをフォローする<br>記録を通じて新たな発見につながる
+        </p>
+      </div>
+    </div>
+
 </div>

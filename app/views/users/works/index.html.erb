@@ -15,7 +15,7 @@
     <div class="tag_form">
       <%= form_tag users_works_path, method: :get, class: 'boards__searchForm' do %>
         <%= select_tag :tag_id, options_from_collection_for_select(Tag.all, :id, :name, params[:tag_id]),
-        { prompt: '全ての作品', onchange: 'submit(this.form);' } %>
+        { prompt: '放送時期で絞る', onchange: 'submit(this.form);' } %>
       <% end %>
     </div>
   </div>
