@@ -1,37 +1,39 @@
 <div class="container">
 
-  <h1>作品登録</h1>
-   <% if @work.errors.any? %>
-    <%= @work.errors.count %>件のエラーが発生しました
-    <ul>
-     <% @work.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-     <% end %>
-    </ul>
- <% end %>
+  <div class="work_form my-4">
+    <h4>作品登録</h4>
+      <% if @work.errors.any? %>
+        <%= @work.errors.count %>件のエラーが発生しました
+        <ul>
+        <% @work.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      <% end %>
 
- <%= form_with model: @work, url: admins_works_path, method: :post do |f| %>
-  <h4>作品画像</h4>
-   <%= f.file_field :image, accept: "image/*" %>
-  <h4>作品名</h4>
-   <%= f.text_field :name %>
-  <h4>ストーリー</h4>
-   <%= f.text_area :story %>
-  <h4>公式サイト</h4>
-   <%= f.text_field :website %><br/>
-   <div class="check_box">
-    <span>タグ</span>
+   <%= form_with model: @work, url: admins_works_path, method: :post do |f| %>
+     <h6>作品画像(Image)</h6>
+     <%= f.file_field :image, accept: "image/*" %>
+     <h6>作品名(Name)</h6>
+     <%= f.text_field :name, :size=>"50" %>
+     <h6>ストーリー(Story)</h6>
+     <%= f.text_area :story, :size=>"100x10" %>
+     <h6>公式サイト</h6>
+     <%= f.text_field :website, :size=>"50" %><br/>
+     <div class="check_box">
+     <span>タグ</span>
      <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
-      <div>
+     <div>
        <%= tag.label do %>
        <%= tag.check_box %>
        <%= tag.text %>
-      <% end %>
-      </div>
-     <% end %>
-   </div>
+       <% end %>
+     </div>
+   <% end %>
+  </div>
 
-  <%= f.submit '登録する' %>
-<% end %>
+    <%= f.submit '登録する' %>
+  <% end %>
 
+  </div>
 </div>

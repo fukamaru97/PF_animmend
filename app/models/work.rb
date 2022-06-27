@@ -8,9 +8,9 @@ class Work < ApplicationRecord
 
   has_many :post_comments, dependent: :destroy # work.post_commentsで投稿のコメント取得
 
+  validates :image, presence: true
   validates :name, presence: true
   validates :story, presence: true
-  validates :image, presence: true
 
   def watchlisted_by?(user)
     watchlists.where(user_id: user).exists?

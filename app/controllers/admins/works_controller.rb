@@ -43,9 +43,12 @@ class Admins::WorksController < ApplicationController
 
   #作品情報更新
   def update
-    work = Work.find(params[:id])
-    work.update(work_params)
-    redirect_to admins_work_path(work.id)
+    @work = Work.find(params[:id])
+    if @work.update(work_params)
+      redirect_to admins_work_path(@work.id)
+    else
+      render :edit
+    end
   end
 
   #作品削除
