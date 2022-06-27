@@ -1,4 +1,9 @@
-<h1>ユーザー一覧</h1>
-<% @users.each do |user| %>
-  <%= user.name %>
-<% end %>
+<div class="container">
+
+  <h4>ユーザー一覧</h4>
+  <% @users.each do |user| %>
+    <%= image_tag user.get_profile_image(50,50) %>
+    <%= user.name %>
+  <% end %>
+
+</div>
