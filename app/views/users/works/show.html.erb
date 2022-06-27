@@ -1,72 +1,74 @@
-<div>
-  　<%= image_tag @work.get_image, size: "200x200" %>
-    <h2>作品名</h2>
-    <p><%= @work.name %></p>
+<div class="container">
 
-    <h2>ストーリー</h2>
-    <p><%= @work.story %></p>
-
-    <p><%= link_to "公式サイト", @work.website, class: "btn btn-info" %></p>
-
-    <% if @work.watchlisted_by?(current_user) %>
-      <p><%= link_to "ウォッチリストから外す", users_work_watchlists_path(@work), method: :delete %></p>
-    <% else %>
-      <p><%= link_to "ウォッチリストに入れる", users_work_watchlists_path(@work), method: :post %></p>
-    <% end %>
-
-    <% @work.tags.each do |tag| %>
-      <%= tag.name %>
-    <% end %>
-</div>
-
-<div>
-    <p>コメント件数:<%= @work.post_comments.count %></p>
-
-    <% @work.post_comments.each do |post_comment| %>
-      <p><%= image_tag post_comment.user.get_profile_image(30,30) %></p>
-      <%= link_to "#{post_comment.user.name}", users_user_path(post_comment.user) %>
-      <%= post_comment.created_at.strftime('%Y/%m/%d') %>
-      <%= post_comment.comment %>
-      <p>評価 :<%= post_comment.rate %>点</p>
-
-      <div id="star-rate-<%= post_comment.id%>"></div>
-      <script>
-          $('#star-rate-<%= post_comment.id %>').raty({
-            size: 36,
-            starOff:  '<%= asset_path('star-off.png') %>',
-            starOn : '<%= asset_path('star-on.png') %>',
-            starHalf: '<%= asset_path('star-half.png') %>',
-            half: true,
-            readOnly: true,
-            score: <%= post_comment.rate %>,
-          });
-          </script>
-
-      <% if post_comment.user == current_user %>
-        <%= link_to "削除", users_work_post_comment_path(post_comment.work, post_comment), method: :delete %>
-      <% end %>
-    <% end %>
-</div>
-
-<div>
-    <%= form_with model: [@work, @post_comment], url: users_work_post_comments_path(@work) do |f| %>
-    　<%= f.text_area :comment, rows: '5', placeholder: "コメントを入力" %>
-      <div id="rate">
-        <%= f.label :rate,'評価' %>
-        <%= f.hidden_field :rate, id: :review_rate %>
+  <div class="work_detail">
+    <div class="row">
+      <div class="col-md-4">
+      　<%= image_tag @work.get_image, size: "350x500" %>
       </div>
+      <div class="col-md-8">
+        <h4>作品名</h4>
+        <p><%= @work.name %></p>
+        <h4>ストーリー</h4>
+        <p><%= @work.story %></p>
+        <p><%= link_to "公式サイト", @work.website, class: "btn btn-info" %></p>
+        <% if @work.watchlisted_by?(current_user) %>
+          <p><%= link_to "ウォッチリストから外す", users_work_watchlists_path(@work), method: :delete, class: "btn btn-secondary" %></p>
+        <% else %>
+          <p><%= link_to "ウォッチリストに入れる", users_work_watchlists_path(@work), method: :post, class: "btn btn-secondary" %></p>
+        <% end %>
+        <% @work.tags.each do |tag| %>
+          <%= tag.name %>
+        <% end %>
+        <p>コメント件数:<%= @work.post_comments.count %></p>
+      </div>
+    </div>
+  </div>
 
-      <script>
-        $('#rate').raty({
-         size     : 36,
-         starOff:  '<%= asset_path('star-off.png') %>',
-         starOn : '<%= asset_path('star-on.png') %>',
-         starHalf: '<%= asset_path('star-half.png') %>',
-         scoreName: 'post_comment[rate]',
-         half: true,
-         });
-      </script>
+  <div class="row mt-4">
+    <div class="col-md-4">
+      <%= form_with model: [@work, @post_comment], url: users_work_post_comments_path(@work) do |f| %>
+      　<%= f.text_area :comment, rows: '5', placeholder: "コメントを入力" %>
+        <div id="rate">
+          <%= f.label :rate,'評価' %>
+          <%= f.hidden_field :rate, id: :review_rate %>
+        </div>
+        <script>
+          $('#rate').raty({
+           size     : 36,
+           starOff:  '<%= asset_path('star-off.png') %>',
+           starOn : '<%= asset_path('star-on.png') %>',
+           starHalf: '<%= asset_path('star-half.png') %>',
+           scoreName: 'post_comment[rate]',
+           half: true,
+           });
+        </script>
+        <%= f.submit "投稿する" %>
+      <% end %>
+    </div>
 
-      <%= f.submit "投稿する" %>
-    <% end %>
+    <div class="col-md-8">
+      <% @work.post_comments.each do |post_comment| %>
+        <%= image_tag post_comment.user.get_profile_image(30,30) %>
+        <%= link_to "#{post_comment.user.name}", users_user_path(post_comment.user) %>
+        <%= post_comment.created_at.strftime('%Y/%m/%d') %>
+        <%= post_comment.comment %>
+        <div id="star-rate-<%= post_comment.id%>"></div>
+        <script>
+            $('#star-rate-<%= post_comment.id %>').raty({
+              size: 36,
+              starOff:  '<%= asset_path('star-off.png') %>',
+              starOn : '<%= asset_path('star-on.png') %>',
+              starHalf: '<%= asset_path('star-half.png') %>',
+              half: true,
+              readOnly: true,
+              score: <%= post_comment.rate %>,
+            });
+        </script>
+        <% if post_comment.user == current_user %>
+          <%= link_to "コメントを削除", users_work_post_comment_path(post_comment.work, post_comment), method: :delete %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+
 </div>

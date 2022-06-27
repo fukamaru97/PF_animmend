@@ -1,8 +1,14 @@
-<h2>プロフィール編集</h2>
-<%= form_with model: @users, url: users_user_path, method: :patch do |f| %>
-  <label for="inputName">ユーザーネーム</label>
-  <%= f.text_field :name, autofocus: true, id:"inputName", placeholder:"ユーザーネーム"%>
-  <label for="inputImage">プロフィール画像</label>
-  <%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: "image/*" %>
-  <%= f.submit "変更を保存" %>
-<% end %>
+<div class="container">
+
+  <div class="edit mt-3">
+    <h4>プロフィール編集</h4>
+      <%= form_with model: @users, url: users_user_path, method: :patch do |f| %>
+        <label for="inputName">ユーザーネーム</label>
+        <p><%= f.text_field :name, autofocus: true, id:"inputName", placeholder:"ユーザーネーム"%></p>
+        <label for="inputImage">プロフィール画像</label>
+        <p><%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: "image/*" %></p>
+        <p><%= f.submit "変更を保存" %></p>
+      <% end %>
+  </div>
+
+</div>
