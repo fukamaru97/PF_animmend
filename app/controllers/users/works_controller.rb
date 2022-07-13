@@ -21,11 +21,4 @@ class Users::WorksController < ApplicationController
     @post_comment = PostComment.new
   end
 
-   private
-
-  def post_comment_params
-    params.require(:post_comment).permit(:comment, :rate)
-  end
-
-
 end

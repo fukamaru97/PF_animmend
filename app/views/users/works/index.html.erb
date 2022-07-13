@@ -3,7 +3,7 @@
   <div class="row">
     <% if user_signed_in? %>
       <div class="search_form mt-3">
-        <%= form_with url: search_users_works_path, local: true, method: :get do |f| %>
+        <%= form_with url: search_works_path, local: true, method: :get do |f| %>
           <%= f.text_field :keyword, value: @keyword, placeholder: "タイトルで検索" %>
           <%= f.submit "検索", class: "btn btn-info" %>
         <% end %>
@@ -13,7 +13,7 @@
 
   <div class="row">
     <div class="tag_form">
-      <%= form_tag users_works_path, method: :get, class: 'boards__searchForm' do %>
+      <%= form_tag works_path, method: :get, class: 'boards__searchForm' do %>
         <%= select_tag :tag_id, options_from_collection_for_select(Tag.all, :id, :name, params[:tag_id]),
         { prompt: '放送時期で絞る', onchange: 'submit(this.form);' } %>
       <% end %>
@@ -24,19 +24,19 @@
       <% @works.each do |work| %>
         <div class="col-md-3 my-5">
           <div class="card">
-            <%= link_to users_work_path(work.id) do %>
+            <%= link_to work_path(work.id) do %>
               <p><%= image_tag work.get_image, class:"card-img-top text-align:center";%></P>
             <% end %>
             <div class="card-body">
               <div class="row">
                 <div class="col-10">
                   <p class="card-title">
-                    <%= link_to work.name, users_work_path(work.id), class:"text-dark" %>
+                    <%= link_to work.name, work_path(work.id), class:"text-dark" %>
                   </p>
                   <% work.tags.each do |tag| %>
                     <p><%= tag.name %></p>
                   <% end %>
-                  <p><%= link_to "#{work.post_comments.count} コメント", users_work_path(work.id) %></p>
+                  <p><%= link_to "#{work.post_comments.count} コメント", work_path(work.id) %></p>
                 </div>
               </div>
             </div>

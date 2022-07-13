@@ -3,7 +3,7 @@
   <div class="work_detail">
     <div class="row">
       <div class="col-md-4">
-      　<%= image_tag @work.get_image, size: "350x500" %>
+      　<%= image_tag @work.get_image, width: "350px" %>
       </div>
       <div class="col-md-8">
         <h4>作品名</h4>
@@ -12,9 +12,9 @@
         <p><%= @work.story %></p>
         <p><%= link_to "公式サイト", @work.website, class: "btn btn-info" %></p>
         <% if @work.watchlisted_by?(current_user) %>
-          <p><%= link_to "ウォッチリストから外す", users_work_watchlists_path(@work), method: :delete, class: "btn btn-secondary" %></p>
+          <p><%= link_to "ウォッチリストから外す", work_watchlists_path(@work), method: :delete, class: "btn btn-secondary" %></p>
         <% else %>
-          <p><%= link_to "ウォッチリストに入れる", users_work_watchlists_path(@work), method: :post, class: "btn btn-secondary" %></p>
+          <p><%= link_to "ウォッチリストに入れる", work_watchlists_path(@work), method: :post, class: "btn btn-secondary" %></p>
         <% end %>
         <% @work.tags.each do |tag| %>
           <%= tag.name %>
@@ -26,7 +26,7 @@
 
   <div class="row my-4">
     <div class="col-md-4">
-      <%= form_with model: [@work, @post_comment], url: users_work_post_comments_path(@work) do |f| %>
+      <%= form_with model: [@work, @post_comment], url: work_post_comments_path(@work) do |f| %>
       　<%= f.text_area :comment, rows: '5', placeholder: "コメントを入力" %>
         <div id="rate">
           <%= f.label :rate,'評価' %>
@@ -49,11 +49,11 @@
     <div class="col-md-8">
       <% @work.post_comments.each do |post_comment| %>
         <%= image_tag post_comment.user.get_profile_image(30,30) %>
-        <%= link_to "#{post_comment.user.name}", users_user_path(post_comment.user) %>
+        <%= link_to "#{post_comment.user.name}", user_path(post_comment.user) %>
         <%= post_comment.created_at.strftime('%Y/%m/%d') %>
         <%= post_comment.comment %>
         <% if post_comment.user == current_user %>
-          <%= link_to "コメントを削除", users_work_post_comment_path(post_comment.work, post_comment), method: :delete, class: "btn btn-danger" %>
+          <%= link_to "コメントを削除", work_post_comment_path(post_comment.work, post_comment), method: :delete, class: "btn btn-danger" %>
         <% end %>
         <div id="star-rate-<%= post_comment.id%>"></div>
         <script>

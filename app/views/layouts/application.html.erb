@@ -28,10 +28,10 @@
 
       <% if user_signed_in? %>
       <li class="nav-item">
-        <%= link_to "作品一覧", users_works_path, class: "btn btn-info" %>
+        <%= link_to "作品一覧", works_path, class: "btn btn-info" %>
       </li>
       <li class="nav-item">
-        <%= link_to "マイページ", users_user_path(current_user.id), class: "ml-2 btn btn-info" %>
+        <%= link_to "マイページ", user_path(current_user.id), class: "ml-2 btn btn-info" %>
       </li>
       <li class="nav-item">
         <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: " ml-2 btn btn-info" %>

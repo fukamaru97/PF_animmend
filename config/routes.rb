@@ -25,7 +25,7 @@ Rails.application.routes.draw do
     resources :users, only: [:index]
   end
 
-  namespace :users do
+  scope module: :users do
     resources :works, only: [:index, :show] do
       resources :post_comments, only: [:create, :destroy]
       resource :watchlists, only: [:create, :destroy]

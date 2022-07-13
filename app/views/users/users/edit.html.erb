@@ -11,7 +11,7 @@
         </ul>
       <% end %>
 
-      <%= form_with model: @users, url: users_user_path, method: :patch do |f| %>
+      <%= form_with model: @user, url: user_path, method: :patch do |f| %>
         <label for="inputName">ユーザー名(Name)</label>
         <p><%= f.text_field :name, autofocus: true, id:"inputName", placeholder:"ユーザーネーム"%></p>
         <label for="inputImage">プロフィール画像(</label>
